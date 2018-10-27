@@ -1,7 +1,7 @@
 import { Router} from 'express';
 import WelcomeController from './welcome.controller';
 
-export {
+export default{
     WelcomeController
 }
 

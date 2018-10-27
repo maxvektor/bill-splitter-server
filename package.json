@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "CI=true jest --watch",
-    "lint:js": "eslint './src/**'",
-    "lint:js:watch": "esw './src/**' --quiet --watch",
+    "lint:js": "eslint './app/**'",
+    "lint:js:watch": "esw './app/**' --quiet --watch",
     "lint": "npm-run-all lint:js",
     "build": "webpack --config webpack.config.js --mode=production",
     "start": "webpack --config webpack.config.js --watch",
