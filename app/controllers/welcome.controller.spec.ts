@@ -1,14 +1,26 @@
 import * as request from "supertest";
-import app from "../server";
+import app, {server} from "../server";
 
 describe("GET /welcome", () => {
-  test("should return 200 OK", () => request(app)
+    afterAll(done => {
+        server.close(done);
+    });
+    
+  test("should return 200 OK", done =>
+    request(app)
       .get("/welcome")
       .expect(200)
-      .then(res => expect(res.text).toBe("Hello, World!")));
+      .then(res => {
+        expect(res.text).toBe("Hello, World!");
+        done();
+      }));
 
-  test("should return 200 OK", () => request(app)
+  test("should return 200 OK", done =>
+    request(app)
       .get("/welcome/drug")
       .expect(200)
-      .then(res => expect(res.text).toBe("Hello, drug")));
+      .then(res =>{
+        expect(res.text).toBe("Hello, drug");
+        done();
+      }));
 });
