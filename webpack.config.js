@@ -1,14 +1,9 @@
-const fs = require('fs');
-
-const nodeModules = {};
-
-fs.readdirSync('node_modules')
-  .filter(x => ['.bin'].indexOf(x) === -1)
-  .forEach(mod => nodeModules[mod] = 'commonjs ' + mod)
+const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   mode: 'development',
-  entry: './app/server.ts',
+  entry: ['webpack/hot/poll?100','./app/server.ts'],
   output: {
     filename: 'bundle.js',
     path: `${__dirname}/dist`,
@@ -26,13 +21,21 @@ module.exports = {
   },
 
   target: 'node',
-  externals: nodeModules,
+  externals: [
+    nodeExternals({
+      whitelist: ['webpack/hot/poll?100'],
+    }),
+  ],
 
   node: {
     fs: 'empty',
     http: 'empty',
     net: 'empty',
   },
+
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
 
   module: {
     rules: [
