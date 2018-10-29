@@ -1,7 +1,5 @@
-import { Router} from 'express';
-import WelcomeController from './welcome.controller';
+import WelcomeController from "./welcome.controller";
 
-export default{
-    WelcomeController
-}
-
+export default {
+  WelcomeController
+};
