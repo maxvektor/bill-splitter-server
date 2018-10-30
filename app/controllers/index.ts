@@ -1,5 +1,5 @@
-import WelcomeController from "./welcome.controller";
+import Bills from "./bills.controller";
 
 export default {
-  WelcomeController
+  Bills
 };
