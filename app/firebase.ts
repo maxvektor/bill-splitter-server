@@ -1,5 +1,7 @@
 import * as firebase from "firebase-admin";
 
+const settings = { timestampsInSnapshots: true };
+
 type ServiceAccount = import("firebase-admin").ServiceAccount;
 const serviceAccount: ServiceAccount = require("../config/bill-splitter-server-firebase");
 
@@ -13,4 +15,8 @@ if (!firebase.apps.length) {
   firebase.initializeApp(config);
 }
 
-export default firebase.firestore();
+const firestore = firebase.firestore();
+
+firestore.settings(settings);
+
+export default firestore;
