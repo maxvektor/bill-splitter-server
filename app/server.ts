@@ -13,10 +13,9 @@ export const server = app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/`);
 });
 
-// TODO: deal with hotreloading firebase issue
-// if (module.hot) {
-//   module.hot.accept();
-//   module.hot.dispose(() => server.close());
-// }
+if (module.hot) {
+  module.hot.accept();
+  module.hot.dispose(() => server.close());
+}
 
 export default app;
