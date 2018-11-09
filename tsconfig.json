@@ -11,6 +11,7 @@
     "paths": {
       "bill-splitter": ["./node_modules/bill-splitter/src"]
     },
+    "allowJs": true,
     "resolveJsonModule": true
   },
   "include": ["./app/**/*"]
