@@ -1,18 +1,18 @@
 {
-    "compilerOptions": {
-        "lib": ["es2017", "dom"],
-        "outDir": "./dist/",
-        "sourceMap": true,
-        "noImplicitAny": true,
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "target": "es2015",
-        "baseUrl": ".",
-        "paths": {
-            "bill-splitter": [ "./node_modules/bill-splitter/src" ]
-        }
+  "compilerOptions": {
+    "lib": ["es2017", "dom"],
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es2015",
+    "baseUrl": ".",
+    "paths": {
+      "bill-splitter": ["./node_modules/bill-splitter/src"]
     },
-    "include": [
-        "./app/**/*"
-    ]
+    "allowJs": true,
+    "resolveJsonModule": true
+  },
+  "include": ["./app/**/*"]
 }

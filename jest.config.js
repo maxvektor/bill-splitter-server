@@ -1,18 +1,17 @@
 module.exports = {
-  preset: 'ts-jest',
-  testEnvironment: 'node',
-  roots: [
-    '<rootDir>/app'
-  ],
-  transform: {
-    '^.+\\.tsx?$': 'ts-jest'
+  preset: "ts-jest",
+  globals: {
+    "ts-jest": {
+      diagnostics: {
+        warnOnly: true,
+        ignoreCodes: ["TS7016"]
+      }
+    }
   },
-  moduleFileExtensions: [
-    'ts',
-    'tsx',
-    'js',
-    'jsx',
-    'json',
-    'node'
-  ],
+  testEnvironment: "node",
+  roots: ["<rootDir>/app"],
+  transform: {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"]
 };
