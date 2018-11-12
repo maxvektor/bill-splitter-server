@@ -17,4 +17,19 @@ router.get("/", async (req, res) => {
     });
 });
 
+router.get("/:id", async (req, res) => {
+  firestore
+    .collection("bills")
+    .doc(req.params.id)
+    .get()
+    .then(snapshot => {
+      const bill = {
+        id: snapshot.id,
+        data: snapshot.data()
+      };
+
+      res.json(bill);
+    });
+});
+
 export default router;

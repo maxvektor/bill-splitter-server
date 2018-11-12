@@ -14,21 +14,37 @@ jest.mock("../firebase", () => ({
 import * as request from "supertest";
 import app, { server } from "../server";
 
-describe("GET /bills", () => {
+describe("bills endpoints", () => {
   afterAll(done => {
     server.close(done);
   });
 
-  test("should data for bills", done =>
-    request(app)
-      .get("/bills")
-      .expect(200)
-      .then(res => {
-        expect(JSON.parse(res.text)).toEqual([
-          { id: "bills_doc_1", data: { hello: "bills_doc_1" } },
-          { id: "bills_doc_2", data: { hello: "bills_doc_2" } },
-          { id: "bills_doc_3", data: { hello: "bills_doc_3" } }
-        ]);
-        done();
-      }));
+  describe("GET /bills", () => {
+    test("should return data for bills", done =>
+      request(app)
+        .get("/bills")
+        .expect(200)
+        .then(res => {
+          expect(JSON.parse(res.text)).toEqual([
+            { id: "bills_doc_1", data: { hello: "bills_doc_1" } },
+            { id: "bills_doc_2", data: { hello: "bills_doc_2" } },
+            { id: "bills_doc_3", data: { hello: "bills_doc_3" } }
+          ]);
+          done();
+        }));
+  });
+
+  describe("GET /bills/id", () => {
+    test("should return data for specific bill", done =>
+      request(app)
+        .get("/bills/bills_doc_1")
+        .expect(200)
+        .then(res => {
+          expect(JSON.parse(res.text)).toEqual({
+            id: "bills_doc_1",
+            data: { hello: "bills_doc_1" }
+          });
+          done();
+        }));
+  });
 });
