@@ -1,4 +1,5 @@
 import * as express from "express";
+import * as bodyParser from "body-parser";
 
 import controllers from "./controllers";
 
@@ -6,6 +7,12 @@ declare const module: any;
 
 const app: express.Application = express();
 const port: number = Number(process.env.PORT) || 3000;
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
 
 app.use("/bills", controllers.Bills);
 
