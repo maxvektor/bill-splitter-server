@@ -32,4 +32,26 @@ router.get("/:id", async (req, res) => {
     });
 });
 
+router.post("/", async (req, res) => {
+  const { value, userId } = req.body;
+
+  firestore
+    .collection("bills")
+    .add({ value, userId })
+    .then(snapshot => {
+      const bill = {
+        id: snapshot.id,
+        data: {
+          value,
+          userId
+        }
+      };
+
+      res.json(bill);
+    })
+    .catch(err => {
+      res.status(500).send(err);
+    });
+});
+
 export default router;
